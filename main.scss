@@ -1,0 +1,811 @@
+// Universal Affects
+body {
+    font-family: 'Piazzolla', serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button {
+    font-family: 'Piazzolla', serif;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus{
+    outline: none;
+}
+
+.second-title{
+    background-color: rgba(64,172,241,0.7);
+    color: white;
+
+    // padding:top & bottom left & right
+    padding: 0.5rem 2rem;
+
+    clip-path: polygon(10% 0,100% 0,90% 100%,0 100%);
+}
+
+.special{
+    color: #EF7998;
+    font-size: 3rem;
+}
+
+#about{
+    .underline-about{
+        width: 120px;
+        height: .4rem;
+        background-color: #D3325F;
+    }
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: whitesmoke;
+
+    // Convert row into column
+    display: grid;
+
+    // On X-axis
+    justify-content: center;
+
+    // On Y-axis
+    align-items: center;
+
+    /* z-index:stacks one on each other based on value  */
+    z-index: 999;
+
+    visibility: visible;
+}
+
+.hidePreLoader {
+    /* z-index:stacks one on each other based on value  */
+    z-index: -999;
+
+    visibility: hidden;
+}
+
+#services {
+    // On Y-axis
+    min-height: 100vh;
+
+    background: url(./1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    // If we use object-fit: cover; it will cut off the sides of the image, preserving the aspect ratio, and also filling in the space.
+    background-size: cover;
+
+    // parallax affects
+    background-attachment: fixed;
+
+    padding-top: 20px;
+    padding-bottom: 80px;
+
+    .underline {
+        width: 110px;
+        height: .3rem;
+        background-color: lawngreen;
+    }
+
+    .services-container {
+        max-width: 90vw;
+        margin: 0 auto;
+        color: yellowgreen;
+
+        .service-item {
+            /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+            position: relative;
+
+            padding: 60px;
+            overflow: hidden;
+
+            .front-text {
+                text-align: center;
+
+                // transition:property duration
+                transition: transform 2s;
+            }
+
+            .back-text {
+                /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+                position: absolute;
+
+                bottom: -15em;
+                width: 75%;
+                margin: 0 auto;
+
+                // padding:top & bottom left & right
+                padding: 30px 0;
+
+                height: 110%;
+
+                // transition:property duration
+                transition: bottom 2s;
+
+                h2 {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        .service-item:hover {
+            .front-text {
+                transform: translateY(-200px);
+            }
+
+            .back-text {
+                bottom: 0;
+            }
+        }
+
+        .service-item-black {
+            // Default Value:Top to Bottom
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+        }
+
+        .service-item-white {
+            // Default Value: Top to Bottom
+            background: linear-gradient(rgba(206, 208, 206, 0.6), rgba(206, 208, 206, 0.6));
+            color: #191716;
+        }
+    }
+}
+
+// Media Queries
+@media screen and (min-width:776px) {
+    .services-container {
+        // converts row into column
+        display: grid;
+
+        // grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+
+        row-gap: 1rem;
+        column-gap: 1rem;
+
+        // Changing the .service-item order
+        .service-item:nth-of-type(1) {
+            order: 1;
+        }
+
+        .service-item:nth-of-type(2) {
+            order: 2;
+        }
+
+        .service-item:nth-of-type(3) {
+            order: 4;
+        }
+
+        .service-item:nth-of-type(4) {
+            order: 3;
+        }
+    }
+}
+
+@media screen and (min-width:375px) {
+    .services-container {
+        .back-text {
+            height: 150%;
+        }
+    }
+}
+
+#projects {
+
+    padding-top: 20px;
+    padding-bottom: 80px;
+
+    .underline-two {
+        width: 140px;
+        height: .4rem;
+    }
+
+    .projects-container {
+        max-width: 90vw;
+        margin: 0 auto;
+
+        .projects-item {
+            /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+            position: relative;
+
+            // Default Value Top to bottom
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+
+            color: #E0E2DB;
+            margin: 10px;
+            overflow: hidden;
+
+            img {
+                min-height: 100%;
+                width: 100%;
+
+                // Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width.
+                display: block;
+
+                // transition:property duration
+                transition: transform 4s;
+            }
+
+            .projects-text {
+                /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+                position: absolute;
+
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+
+                // transition:property duration
+                transition: opacity 4s;
+
+                // The opacity-level describes the transparency-level,
+                opacity: 0;
+            }
+
+            .projects-footer {
+                /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+                position: absolute;
+
+                // Convert column into row
+                display: flex;
+
+                // On X-axis
+                justify-content: space-between;
+
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 10px;
+                font-size: 1.2rem;
+                color: whitesmoke;
+
+                // The opacity-level describes the transparency-level,
+                opacity: 0;
+
+                // transition:property duration
+                transition: opacity 4s;
+            }
+        }
+
+        .projects-item:hover {
+            img {
+                // The opacity-level describes the transparency-level,
+                opacity: 0.4;
+
+                transform: scale(1.3);
+            }
+
+            .projects-text {
+                // The opacity-level describes the transparency-level,
+                opacity: 1;
+            }
+
+            .projects-footer {
+                // The opacity-level describes the transparency-level,
+                opacity: 1;
+            }
+        }
+    }
+}
+
+// Media Queries
+@media screen and (min-width:576px) {
+    .projects-container {
+        // converts row into column
+        display: grid;
+
+        // grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+
+        column-gap: 1rem;
+    }
+}
+
+// Media Queries
+@media screen and (min-width:997px) {
+    .projects-container {
+        // converts row into column
+        display: grid;
+
+        // grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
+
+        column-gap: 1rem;
+    }
+}
+
+#posts {
+    .underline-one {
+        width: 100px;
+        height: .4rem;
+    }
+
+    .card {
+        /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+        position: relative;
+
+        // Default Value: Top to Bottom
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+
+        .fa-search {
+            /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transform: opacity 4s;
+
+            // The opacity-level describes the transparency-level,
+            opacity: 0;
+        }
+    }
+
+    .team-icons a {
+        transition: all 2s ease-in-out;
+    }
+
+    .team-icons a :hover {
+        transform: translateY(-5px);
+    }
+
+    .card:hover {
+        img {
+            // The opacity-level describes the transparency-level,
+            opacity: 0.4;
+        }
+
+        .fa-search {
+            // The opacity-level describes the transparency-level,
+            opacity: 1;
+        }
+    }
+}
+
+#menu-section {
+
+    .underline-three {
+        width: 220px;
+        height: .4rem;
+    }
+
+    .item-container {
+        /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+        position: relative;
+
+        overflow: hidden;
+
+        // Default Value Top to Bottom
+        background: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
+
+        // transition:Default Value Duration 
+        // transition-timing-function:ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default) 
+        transition: all 4s ease;
+
+        .item-image {
+            // transition:Default Value Duration 
+            // transition-timing-function:ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default)
+            transition: all 4s ease;
+        }
+
+        .item-link {
+            /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #D3325F !important;
+
+            // border:size type color
+            border-top: 2px solid #D3325F;
+            border-bottom: 2px solid #D3325F;
+
+            // transition:Default Value Duration 
+            // transition-timing-function:ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default)
+            transition: all 4s ease;
+
+            // The opacity-level describes the transparency-level.
+            opacity: 0;
+        }
+
+        .item-link:hover {
+            color: #242424 !important;
+
+            // border:size type color
+            border: 2px solid #C9C1AC;
+
+            background-color: #C9C1AC;
+        }
+    }
+
+    .item-container:hover {
+        // outline:size type color
+        outline: 10px solid #D3325F;
+
+        // The outline-offset property adds space between an outline and the edge or border of an element.
+        // The space between an element and its outline is transparent
+        outline-offset: 0.8rem;
+
+        .item-image {
+            transform: scale(1.2);
+
+            // The opacity-level describes the transparency-level.
+            opacity: 0.4;
+        }
+
+        .item-link {
+            // The opacity-level describes the transparency-level.
+            opacity: 1;
+        }
+    }
+}
+
+#about {
+    .about-images {
+        /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+        position: relative;
+
+        .about-image {
+            /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+            position: absolute;
+
+            width: 150px;
+
+            // transition:Default value Duration
+            // transition-timing-function:ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default)
+            transition: all 1s ease;
+
+            // The opacity-level describes the transparency-level.
+            opacity: 0.9;
+        }
+
+        .about-image:hover {
+            // outline:size type color
+            outline: 10px solid #D3325F;
+
+            // The outline-offset property adds space between an outline and the edge or border of an element.
+            // The space between an element and its outline is transparent
+            outline-offset: 0.8rem;
+
+            transform: scale(1.2);
+            transform: rotate(20deg);
+
+            // The opacity-level describes the transparency-level.
+            opacity: 1;
+
+            /* z-index:stacks one on each other based on value  */
+            z-index: 30;
+        }
+
+        .image-1 {
+            // Default
+            top: 0%;
+            left: 0%;
+        }
+
+        .image-2 {
+            top: 20%;
+            left: 20%;
+
+            /* z-index:stacks one on each other based on value  */
+            z-index: 10;
+        }
+
+        .image-3 {
+            top: 60%;
+            left: 40%;
+
+            /* z-index:stacks one on each other based on value  */
+            z-index: 20;
+        }
+
+        .image-4 {
+            top: 0%;
+            left: 40%;
+        }
+
+        .image-5 {
+            top: 60%;
+            left: 0%;
+        }
+    }
+
+    .about-images:hover {
+        .about-image:not(hover) {
+            // The opacity-level describes the transparency-level.
+            opacity: 0.4;
+        }
+    }
+}
+
+// Drink People
+.drink{
+    .drink-form{
+        .drink-form-title{
+            font-size: 3rem;
+        }
+
+        .input-first-name,.input-last-name,.input-email-symbol{
+            width: 100%;
+        }
+
+        .input-first-name,.input-last-name,.input-email-symbol,.input-submit{
+            font-size: 1rem;
+            border-radius: 0.5rem;
+
+            // padding:top & bottom left & right
+            padding: 0.25rem 0.5rem;
+
+            color: burlywood;
+
+            // Default:Top to Bottom
+            background-color: rgba(0, 0, 0, 0.7);
+
+            border: none;
+        }
+
+        .input-first-name::placeholder,.input-last-name::placeholder,.input-email-symbol::placeholder{
+            color: teal;
+        }
+
+        .input-submit{
+            text-transform: capitalize;
+            background-color: lavenderblush;
+            color: #191716;
+
+            // transition: property duration
+            // transition-timing-function:linear - specifies a transition effect with the same speed from start to end.
+            transition: all 0.2s linear;
+        }
+        .input-submit:hover{
+            // The opacity-level describes the transparency-level.
+            opacity: 0.3;
+        }
+    }
+
+    .drink-form{
+        // Convert row into column
+        display: grid;
+
+        grid-template-columns: 70%;
+
+        // On X-axis
+        justify-content: center;
+
+        row-gap: 1.25rem;
+    } 
+}
+
+#inventory{
+    background-color: gray;
+
+    .card{
+        .car-image{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .card-body{
+            .car-value{
+                background-color: #4BACF1;
+                color: white;
+                clip-path: polygon(15% 0,85% 0,100% 100%,0 100%);
+
+                // transition:property duration
+                // transition-timing-function:linear - specifies a transition effect with the same speed from start to end.
+                transition: all 1s linear;
+            }
+            .car-value:hover{
+                clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+            }
+        }
+    }
+}
+
+.featured{
+    background-color: wheat;
+
+    .featured-info{
+        .featured-item{
+            background-color: white;
+            border-radius: 0.5rem;
+
+            // The opacity-level describes the transparency-level.
+            opacity: 0.5;
+
+            cursor: pointer;
+
+            // transition:Propert duration
+            // transition-timing-function:ease-in-out:Specifies a transition effect with a slow start and end
+            transition: all 1s ease-in-out;
+        }
+        .featured-item:hover{
+            // The opacity-level describes the transparency-level.
+            opacity: 1;
+
+            transform: scale(1.05);
+        }
+    }
+    .featured-image{
+        .image-container{
+            /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+            position: relative;
+
+            background-color: #4BACF1;
+            overflow: hidden;
+
+            .featured-photo{
+                // transition:Property duration
+                // transition-timing-function:ease-in-out:Specifies a transition effect with a slow start and end
+                transition: all 1s ease-in-out;
+            }
+
+            .featured-link{
+                /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+                position: absolute;
+
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+
+                // transition:Property duration
+                // transition-timing-function:ease-in-out:Specifies a transition effect with a slow start and end
+                transition: all 1s ease-in-out;
+
+                // The opacity-level describes the transparency-level.
+                opacity: 0;
+            } 
+        }
+
+        .image-container:hover{
+            .featured-photo{
+                transform: scale(1.2);
+
+                // The opacity-level describes the transparency-level.
+                opacity: 0.5;
+            }
+            .featured-link{
+                // The opacity-level describes the transparency-level.
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#about{
+    
+    .about-image-container{
+        /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+        position: relative;
+    }
+    .about-image-container::before{
+        /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+        position: absolute;
+
+        content: '';
+        top: -1.5rem;
+        left: -1.7rem;
+        width: 100%;
+        height: 100%;
+
+        // outline:size style color
+        outline: 0.5rem solid rgb(249,228,148);
+
+        /* z-index:stacks one on each other based on value  */
+        z-index: -1;
+        
+        // transition:Property Duration
+        // transition-timing-function:linear - specifies a transition effect with the same speed from start to end.
+        transition: all 1s linear;
+    }
+    .about-image-container:hover::before{
+        top: 0;
+        left: 0;
+    }
+}
+
+#store{
+    .search-box{
+        background-color: #EF7998;
+    }
+
+    .card-item{
+        transition: all 0.2s linear;
+
+        .image-container{
+            /* position: relative, it’ll remain “in the flow” of the layout but you can move it around! */
+            position: relative;
+
+            overflow: hidden;
+            cursor: pointer;
+
+            .card-photo{
+                // transition:property duration
+                // transition-timing-function:ease-in-out:Specifies a transition effect with a slow start and end
+                transition: all 2s ease-in-out;
+            }
+            .store-icon{
+                /* position: absolute takes elements “out of flow” so its grid space gets collapsed. */
+                position: absolute;
+
+                bottom: 0;
+                right: 0;
+                background-color: rgb(249,228,148);
+                padding: 0.8rem;
+                border-top-left-radius: 1rem;
+
+                // transition:property duration
+                // transition-timing-function:ease-in-out:Specifies a transition effect with a slow start and end
+                transition: all 1s ease-in-out;
+
+                transform: translate(100%,100%);
+            }
+            .store-icon:hover{
+                color: whitesmoke;
+            }
+        }
+        .image-container:hover{
+            .card-photo{
+                transform: scale(1.2);
+            }
+            .store-icon{
+                transform: translate(0,0);
+            }
+        }
+    }
+
+    .card-item:hover{
+        // box-shadow:<offset-x> <offset-y> <blur-radius> color
+        box-shadow: 0px 10px 15px rgb(0, 0, 0);
+    }
+
+}
+
+footer {
+    background-color: #191716;
+    padding: 20px;
+
+    // Converts column into row
+    display: flex;
+
+    // The flex-wrap property specifies whether the flexible items should wrap or not
+    flex-wrap: wrap;
+
+    // On X-axis
+    justify-content: space-between;
+
+    // On Y-axis
+    align-items: flex-end;
+
+    .footer-text {
+        color: whitesmoke;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+
+    .footer-icons {
+        // transition:property duration
+        transition: transform 4s;
+    }
+
+    .footer-icons:hover {
+        transform: translateY(-50px);
+    }
+}
